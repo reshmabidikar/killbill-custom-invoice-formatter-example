@@ -40,8 +40,7 @@
         <check.skip-enforcer>true</check.skip-enforcer>
         <check.skip-rat>true</check.skip-rat>
         <check.skip-spotbugs>true</check.skip-spotbugs>
-        <osgi.extra-import>org.killbill.billing.plugin.notification.api;
-			org.killbill.billing.plugin.notification.generator.*;</osgi.extra-import>
+        <killbill.version>0.24.5</killbill.version>
         <osgi.private>org.killbill.billing.plugin.custominvoiceformatter.*</osgi.private>
     </properties>
     <dependencies>
@@ -87,6 +86,16 @@
         </dependency>
         <dependency>
             <groupId>org.kill-bill.billing</groupId>
+            <artifactId>killbill-internal-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.kill-bill.billing</groupId>
+            <artifactId>killbill-invoice</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.kill-bill.billing</groupId>
             <artifactId>killbill-platform-osgi-api</artifactId>
             <scope>provided</scope>
         </dependency>
@@ -114,12 +123,6 @@
             <artifactId>killbill-base-plugin</artifactId>
             <type>test-jar</type>
             <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.kill-bill.billing.plugin.java</groupId>
-            <artifactId>killbill-email-notifications-plugin</artifactId>
-            <version>0.8.0</version>
-            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.kill-bill.commons</groupId>

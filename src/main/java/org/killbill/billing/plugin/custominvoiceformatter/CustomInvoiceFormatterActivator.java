@@ -1,7 +1,7 @@
 package org.killbill.billing.plugin.custominvoiceformatter;
 
+import org.killbill.billing.invoice.api.formatters.InvoiceFormatterFactory;
 import org.killbill.billing.osgi.libs.killbill.KillbillActivatorBase;
-import org.killbill.billing.plugin.notification.api.InvoiceFormatterFactory;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.ServiceRegistration;
 

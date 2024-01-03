@@ -1,9 +1,13 @@
 package org.killbill.billing.plugin.custominvoiceformatter;
 
+import org.killbill.billing.callcontext.InternalTenantContext;
+import org.killbill.billing.currency.api.CurrencyConversionApi;
 import org.killbill.billing.invoice.api.Invoice;
 import org.killbill.billing.invoice.api.formatters.InvoiceFormatter;
-import org.killbill.billing.plugin.notification.api.InvoiceFormatterFactory;
+import org.killbill.billing.invoice.api.formatters.InvoiceFormatterFactory;
+import org.killbill.billing.invoice.api.formatters.ResourceBundleFactory;
 import org.killbill.billing.util.callcontext.TenantContext;
+import org.killbill.billing.util.template.translation.TranslatorConfig;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -21,9 +25,7 @@ public class CustomInvoiceFormatterFactory implements InvoiceFormatterFactory {
 
 
     @Override
-    public InvoiceFormatter createInvoiceFormatter(Map<String, String> translator, Invoice invoice, Locale locale,
-                                                   TenantContext context) {
-        return new CustomInvoiceFormatter(translator, invoice, locale);
+    public InvoiceFormatter createInvoiceFormatter(TranslatorConfig config, Invoice invoice, Locale locale, CurrencyConversionApi currencyConversionApi, ResourceBundleFactory bundleFactory, InternalTenantContext context) {
+        return new CustomInvoiceFormatter(config, invoice, locale, currencyConversionApi, bundleFactory, context);
     }
-
 }
