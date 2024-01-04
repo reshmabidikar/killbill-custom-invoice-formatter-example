@@ -1,6 +1,8 @@
 package org.killbill.billing.plugin.custominvoiceformatter;
 
 import org.killbill.billing.invoice.api.formatters.InvoiceFormatterFactory;
+import org.killbill.billing.invoice.plugin.api.InvoicePluginApi;
+import org.killbill.billing.osgi.api.OSGIPluginProperties;
 import org.killbill.billing.osgi.libs.killbill.KillbillActivatorBase;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.ServiceRegistration;
@@ -27,6 +29,14 @@ public class CustomInvoiceFormatterActivator extends KillbillActivatorBase {
         registration = context.registerService(InvoiceFormatterFactory.class, customInvoiceFormatterFactory,
                 properties); // register factory as OSGi service
 
+        registerCustomInvoiceFormatterFactory(context, customInvoiceFormatterFactory);
+
+    }
+
+    private void registerCustomInvoiceFormatterFactory(final BundleContext context, final CustomInvoiceFormatterFactory factory) {
+        final Hashtable<String, String> props = new Hashtable<String, String>();
+        props.put(OSGIPluginProperties.PLUGIN_NAME_PROP, PLUGIN_NAME);
+        registrar.registerService(context, CustomInvoiceFormatterFactory.class, factory, props);
     }
 
     @Override
