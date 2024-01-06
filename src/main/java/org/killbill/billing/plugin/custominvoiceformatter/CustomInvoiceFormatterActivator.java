@@ -1,7 +1,6 @@
 package org.killbill.billing.plugin.custominvoiceformatter;
 
 import org.killbill.billing.invoice.api.formatters.InvoiceFormatterFactory;
-import org.killbill.billing.invoice.plugin.api.InvoicePluginApi;
 import org.killbill.billing.osgi.api.OSGIPluginProperties;
 import org.killbill.billing.osgi.libs.killbill.KillbillActivatorBase;
 import org.osgi.framework.BundleContext;
@@ -16,7 +15,7 @@ public class CustomInvoiceFormatterActivator extends KillbillActivatorBase {
     public static final String PLUGIN_NAME = "custom-invoice-formatter-plugin";
 
 
-    private CustomInvoiceFormatterFactory customInvoiceFormatterFactory;
+    private InvoiceFormatterFactory invoiceFormatterFactory;
     private ServiceRegistration<InvoiceFormatterFactory> registration = null;
 
     @Override
@@ -24,19 +23,19 @@ public class CustomInvoiceFormatterActivator extends KillbillActivatorBase {
         super.start(context);
 
         // create CustomInvoiceFormatterFactory
-        customInvoiceFormatterFactory = new CustomInvoiceFormatterFactory();
+        invoiceFormatterFactory = new CustomInvoiceFormatterFactory();
         Hashtable<String, Object> properties = new Hashtable<>();
-        registration = context.registerService(InvoiceFormatterFactory.class, customInvoiceFormatterFactory,
+        registration = context.registerService(InvoiceFormatterFactory.class, invoiceFormatterFactory,
                 properties); // register factory as OSGi service
 
-        registerCustomInvoiceFormatterFactory(context, customInvoiceFormatterFactory);
+        registerCustomInvoiceFormatterFactory(context, invoiceFormatterFactory);
 
     }
 
-    private void registerCustomInvoiceFormatterFactory(final BundleContext context, final CustomInvoiceFormatterFactory factory) {
+    private void registerCustomInvoiceFormatterFactory(final BundleContext context, final InvoiceFormatterFactory factory) {
         final Hashtable<String, String> props = new Hashtable<String, String>();
         props.put(OSGIPluginProperties.PLUGIN_NAME_PROP, PLUGIN_NAME);
-        registrar.registerService(context, CustomInvoiceFormatterFactory.class, factory, props);
+        registrar.registerService(context, InvoiceFormatterFactory.class, factory, props);
     }
 
     @Override
