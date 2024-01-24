@@ -14,7 +14,7 @@
     <parent>
         <groupId>org.kill-bill.billing</groupId>
         <artifactId>killbill-oss-parent</artifactId>
-        <version>0.146.20</version>
+        <version>0.146.23-SNAPSHOT</version>
     </parent>
     <groupId>org.kill-bill.billing.plugin.java</groupId>
     <artifactId>custom-invoice-formatter-plugin</artifactId>
@@ -40,7 +40,7 @@
         <check.skip-enforcer>true</check.skip-enforcer>
         <check.skip-rat>true</check.skip-rat>
         <check.skip-spotbugs>true</check.skip-spotbugs>
-        <killbill.version>0.24.5</killbill.version>
+        <killbill.version>0.24.6-SNAPSHOT</killbill.version>
         <osgi.private>org.killbill.billing.plugin.custominvoiceformatter.*</osgi.private>
     </properties>
     <dependencies>
@@ -82,11 +82,6 @@
         <dependency>
             <groupId>org.kill-bill.billing</groupId>
             <artifactId>killbill-api</artifactId>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.kill-bill.billing</groupId>
-            <artifactId>killbill-internal-api</artifactId>
             <scope>provided</scope>
         </dependency>
         <dependency>

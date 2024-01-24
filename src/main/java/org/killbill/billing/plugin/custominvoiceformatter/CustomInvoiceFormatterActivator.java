@@ -1,6 +1,6 @@
 package org.killbill.billing.plugin.custominvoiceformatter;
 
-import org.killbill.billing.invoice.api.formatters.InvoiceFormatterFactory;
+import org.killbill.billing.invoice.plugin.api.InvoiceFormatterFactory;
 import org.killbill.billing.osgi.api.OSGIPluginProperties;
 import org.killbill.billing.osgi.libs.killbill.KillbillActivatorBase;
 import org.osgi.framework.BundleContext;
